@@ -7,7 +7,7 @@ There are 2 apps in these repositories
 <br>`Ctrl` `-` : Decrease the app size
 <br>`Ctrl` `M` : Mask the TitleBar (while masked, using `Alt`+`Tab` will bring the app to the front if it gets masked by another window)
 <br>ㅤㅤㅤ 
-<br>ㅤㅤㅤYou can compile [app/LKLV.pyw](https://github.com/elfi-ox/LKLV/blob/main/app/LKLV.pyw) in a executable with tools like [Auto PY to EXE](https://pypi.org/project/auto-py-to-exe/) if you want it to have a proper icon like [this one](https://github.com/elfi-ox/LKLV/blob/main/app/icon.ico) 
+<br>ㅤㅤㅤYou can compile [app/LKLV.pyw](https://github.com/elfi-ox/LKLV/blob/main/app/LKLV.pyw) into an executable with tools like [Auto PY to EXE](https://pypi.org/project/auto-py-to-exe/) if you want it to have a proper icon like [this one](https://github.com/elfi-ox/LKLV/blob/main/app/icon.ico) 
 
 - [LayerMaker/xlsx to png.py](https://github.com/elfi-ox/LKLV/blob/main/LayerMaker/xlsx%20to%20png.py) is the app that will generate, when executed, the keyboard template used by LKLV.pyw in the [app/Layers](https://github.com/elfi-ox/LKLV/tree/main/app/Layers) folder, it will do so based on the [LayerMaker/KeybordLayout.xlsx](https://github.com/elfi-ox/LKLV/blob/main/LayerMaker/KeybordLayout.xlsx) spreadsheet. It is ***HEAVILY*** recommended to run this file with Excel to modify the keys because it relies on conditonal formating and checkboxes.
 
