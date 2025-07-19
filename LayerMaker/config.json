@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Main",
+    "changes": {
+      "L21:N21": false,
+      "M22:N22": false,
+      "L23:N29": false
+    }
+  },
+  {
+    "name": "Shift",
+    "changes": {
+      "L21": true
+    }
+  },
+  {
+    "name": "CapsLock",
+    "changes": {
+      "M31": true
+    }
+  },
+  {
+    "name": "AltGr+Shift",
+    "changes": {
+      "L21": false,
+      "M31": false,
+      "M21": true
+    }
+  },
+  {
+    "name": "Fn",
+    "changes": {
+      "M21": false,
+      "N21": true
+    }
+  },
+  {
+    "name": "Altgr",
+    "changes": {
+      "N21": false,
+      "M22": true
+    }
+  },
+  {
+    "name": "Alt",
+    "changes": {
+      "M22": false,
+      "N22": true
+    }
+  },
+  {
+    "name": "Win",
+    "changes": {
+      "N22": false,
+      "L23": true
+    }
+  },
+  {
+    "name": "Ctrl",
+    "changes": {
+      "L23": false,
+      "M23": true
+    }
+  },
+  {
+    "name": "Win+Shift",
+    "changes": {
+      "M23": false,
+      "N23": true
+    }
+  },
+  {
+    "name": "Win+Ctrl",
+    "changes": {
+      "N23": false,
+      "L24": true
+    }
+  },
+  {
+    "name": "Win+Alt",
+    "changes": {
+      "L24": false,
+      "M24": true
+    }
+  },
+  {
+    "name": "Win+AltGr",
+    "changes": {
+      "M24": false,
+      "N24": true
+    }
+  },
+  {
+    "name": "Ctrl+Shift",
+    "changes": {
+      "N24": false,
+      "L25": true
+    }
+  },
+  {
+    "name": "Alt+Shift",
+    "changes": {
+      "L25": false,
+      "M25": true
+    }
+  },
+  {
+    "name": "AltGr+Y",
+    "changes": {
+      "M25": false,
+      "N25": true
+    }
+  },
+  {
+    "name": "Win+Ctrl+Shift",
+    "changes": {
+      "N25": false,
+      "L26": true
+    }
+  },
+  {
+    "name": "Win+Alt+Shift",
+    "changes": {
+      "L26": false,
+      "M26": true
+    }
+  }
+]
