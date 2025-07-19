@@ -1,0 +1,21 @@
+{
+    "000000":"Layers/Main.png",
+    "100000":"Layers/Ctrl.png",
+    "010000":"Layers/Alt.png",
+    "001000":"Layers/Shift.png",
+    "000100":"Layers/Win.png",
+    "110000":"Layers/AltGr.png",
+    "101000":"Layers/Ctrl+Shift.png",
+    "111000":"Layers/AltGr+Shift.png",
+    "110001":"Layers/AltGr+Y.png",
+    "000010":"Layers/Fn.png",
+    "011000":"Layers/Alt+Shift.png",
+    "010100":"Layers/Win+Alt.png",
+    "011100":"Layers/Win+Alt+Shift.png",
+    "110100":"Layers/Win+AltGr.png",
+    "100100":"Layers/Win+Ctrl.png",
+    "101100":"Layers/Win+Ctrl+Shift.png",
+    "001100":"Layers/Win+Shift.png",
+    "200000":"Layers/CapsLock.png",
+    "220000":"Layers/Loading.png"
+}
