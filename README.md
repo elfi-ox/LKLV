@@ -1,7 +1,7 @@
 # LKLV
 
 There are 2 apps in these repositories
- - [app/LKLV.pyw](https://github.com/elfi-ox/LKLV/blob/main/app/LKLV.pyw) is the Keybord Layout Vizualizer, When the file is executed it will launch [app/hotkeymonitor.ahk](https://github.com/elfi-ox/LKLV/blob/main/app/hotkeymonitor.ahk). This file needs [AutoHotKey](https://www.autohotkey.com) to run and is needed to communicate the key presses to the app API. The Fn key is not detectable by the OS, you will see in the AutoHotKey file that it is set to return 0. If you want to use that key, you will need to configure this script and your keyboard to communicate when the Fn key is being pressed.
+ - [app/LKLV.pyw](https://github.com/elfi-ox/LKLV/blob/main/app/LKLV.pyw) is the Keybord Layout Vizualizer, When the file is executed it will launch [app/hotkeymonitor.ahk](https://github.com/elfi-ox/LKLV/blob/main/app/hotkeymonitor.ahk). This file needs [AutoHotKey](https://www.autohotkey.com) to run and is needed to communicate the key presses to the app API. The Fn key is not detectable by the OS, if you want to use that key, you will need to configure this script and your keyboard to communicate when the Fn key is being pressed. For that purpose there are ahk scripts and exe that will activate the Fn layer in [app/Fn detector](https://github.com/elfi-ox/LKLV/blob/main/app/Fn%20detector), you can bind your keyboard to execute them. If you don't use them, you might disable their detection in [app/hotkeymonitor.ahk](https://github.com/elfi-ox/LKLV/blob/main/app/hotkeymonitor.ahk), Line 21
 <br>ㅤㅤㅤ 
 <br>`Ctrl` `+` : Increase the app size
 <br>`Ctrl` `-` : Decrease the app size
