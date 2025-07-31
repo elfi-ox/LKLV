@@ -3,64 +3,69 @@
 #NoTrayIcon
 
 
-; Liste des touches à surveiller
 global keys := Map(
     "ctrl", false,
     "alt", false,
     "shift", false,
     "lwin", false,
-    "ralt", false  ; ralt est souvent AltGr
 )
-
 global lastState := ""
 global waitingForKeyAfterYRelease := false
 global prevYState := 0
+fnState := "0"
 
-; Timer pour surveiller les touches toutes les 100 ms
+
 SetTimer WatchKeys, 100
-
 WatchKeys() {
-    global keys, lastState, waitingForKeyAfterYRelease, prevYState
+    
+    ; ## Remove the “;” below to comment. This part enables Fn detection via fn_ShortCall.ahk, fn_off.ahk, fn_on.ahk
+    ;/* 
+    fnState := "0"
+    atomName := "FnKeyActive"
 
+    if DllCall("GlobalFindAtom", "Str", atomName, "UShort") {
+        fnState := "1"
+    }
+    ;*/
+
+
+    global keys, lastState, waitingForKeyAfterYRelease, prevYState 
     code := ""
     code .= GetKeyState("Ctrl") ? "1" : "0"
     code .= GetKeyState("Alt") ? "1" : "0"
     code .= GetKeyState("Shift") ? "1" : "0"
     code .= GetKeyState("LWin") || GetKeyState("RWin") ? "1" : "0"
-    code .= "0" ; réservé pour Fn
+    code .=  fnState 
     code .= GetKeyState("Y") ? "1" : "0"
-
-    send_code := code
     if (GetKeyState("CapsLock", "T") && (code = "000000" || code = "000001")) {
-        send_code := "200000"
+        code := "200000"
     }
 
-    ; Detect Y release while Ctrl and Alt are pressed
+
+    ; ## Detect Y release while Ctrl and Alt are pressed
     if (GetKeyState("y") && GetKeyState("Ctrl") && GetKeyState("Alt")) {
-        SendToAPI(send_code)
+        SendToAPI(code)
         Sleep 1000
     }
 
 
-    if send_code != lastState {
-        lastState := send_code
-        SendToAPI(send_code)
+    if code != lastState {
+        lastState := code
+        SendToAPI(code)
     }
-    
 }
 
 SendToAPI(code) {
     try {
-        json := Format('{"code":"{}"}', code)  ; Construction propre du JSON
-
+        json := Format('{"code":"{}"}', code)
         HTTP := ComObject("WinHttp.WinHttpRequest.5.1")
         HTTP.Open("POST", "http://127.0.0.1:8765/key_state", false)
         HTTP.SetRequestHeader("Content-Type", "application/json")
         HTTP.Send(json)
-        ;ToolTip "Envoi: " code 
+        ;ToolTip "Sent: " code 
         ;SetTimer(() => ToolTip(), -1000)
     } catch Error as e {
-        ; ToolTip "Erreur d’envoi API : " e.Message
+        ;ToolTip " API sending error : " e.Message
         ExitApp
     }
 }
