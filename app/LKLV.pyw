@@ -17,6 +17,10 @@ ahk_process = subprocess.Popen(["C:\\Program Files\\AutoHotkey\\v2\\AutoHotkey64
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 stop_threads = False
 CONFIG_FILE = "config.json"
+# Ratio
+Hsize = 877
+Lsize = 2560
+
 if os.path.exists("key_correspondance.json"):
             with open("key_correspondance.json", 'r') as f:
                 key_correspondance = json.load(f)
@@ -26,13 +30,13 @@ class ImageWindow(tk.Toplevel):
 
         super().__init__(master)
         self.master = master
-        self.overrideredirect(False)  # On démarre avec la titlebar
+        self.overrideredirect(False)  # titlebar
 
-        self.wm_attributes("-topmost", False)         # S'assurer que la fenêtre apparaît dans la barre des tâches
+        self.wm_attributes("-topmost", False)
         self.wm_attributes("-toolwindow", False)
         self.wm_attributes("-disabled", False)
-        self.wm_attributes("-transparentcolor", "")  # au cas où
-        self.iconify()  # on minimise, puis restore pour "forcer" l'OS à l'intégrer
+        self.wm_attributes("-transparentcolor", "")
+        self.iconify()
         self.deiconify()
 
         self.title("Live Keybord Layout Vizualizer")
@@ -45,7 +49,6 @@ class ImageWindow(tk.Toplevel):
         self.image_label = tk.Label(self, bg="black")
         self.image_label.pack(fill=tk.BOTH, expand=True)
 
-        self.sizes = [(527, 180), (733, 250), (938, 320), (1172, 400), (1465, 500), (1758, 600), (2051, 700), (2344, 800)]  # Previous size application
         self.current_size_index = 2  
         self.load_config()
         self.after(200, self.enable_resizing)
@@ -76,12 +79,12 @@ class ImageWindow(tk.Toplevel):
 
     def increase_size(self, event=None):
         w = self.winfo_width()
-        self.geometry(f"{round(w * 1.1)}x{round(w / 2560 * 877 * 1.1)}")
+        self.geometry(f"{round(w * 1.1)}x{round(w / Lsize * Hsize * 1.1)}")
         self.after(1, self.update_image_size)
 
     def decrease_size(self, event=None):
         w = self.winfo_width()
-        self.geometry(f"{round(w * 0.9)}x{round(w / 2560 * 877 * 0.9)}")
+        self.geometry(f"{round(w * 0.9)}x{round(w / Lsize * Hsize * 0.9)}")
         self.after(1, self.update_image_size)
 
     def load_config(self):
@@ -108,9 +111,9 @@ class ImageWindow(tk.Toplevel):
         w = self.winfo_width()
         if w < 200:
             return
-        desired_h = round(877 / 2560 * w)
+        desired_h = round(Hsize / Lsize * w) 
         current_h = self.winfo_height()
-        if abs(current_h - desired_h) > 2:  # Tolérance pour éviter les boucles
+        if abs(current_h - desired_h) > 2:
             self.geometry(f"{w}x{desired_h}")
             self.after(1, self.update_image_size)
 
@@ -180,7 +183,7 @@ def watch_alt_tab(app):
         if app.titlebar_status() == False and ((keyboard.is_pressed('alt') and keyboard.is_pressed('tab')) or \
            (keyboard.is_pressed('ctrl') and keyboard.is_pressed('alt') and keyboard.is_pressed('tab'))):
             app.bring_to_front_temporarily()
-            time.sleep(2)  # éviter répétition excessive
+            time.sleep(2)
         time.sleep(0.3)
         
 
@@ -197,7 +200,7 @@ def start_api(app_instance):
         key_code = data.get("code")
 
         if key_code in key_correspondance:
-            app_instance.change_img(key_code)  # ✅ Affiche l’image liée
+            app_instance.change_img(key_code)
             return {"status": f"ok, {key_code} applied"}
         return {"status": "unknown key"}, 400
             
@@ -205,7 +208,7 @@ def start_api(app_instance):
 
 def enable_dark_title_bar(window_id):
     hwnd = ctypes.windll.user32.GetParent(window_id)
-    DWMWA_USE_IMMERSIVE_DARK_MODE = 20  # For Windows 10 1809 and above
+    DWMWA_USE_IMMERSIVE_DARK_MODE = 20
 
     value = ctypes.c_int(1)
     ctypes.windll.dwmapi.DwmSetWindowAttribute(
@@ -219,9 +222,8 @@ def disable_maximize_button(hwnd):
     GWL_STYLE = -16
     WS_MAXIMIZEBOX = 0x00010000
 
-    # Lire le style actuel
     current_style = ctypes.windll.user32.GetWindowLongW(hwnd, GWL_STYLE)
-    # Retirer le bit du bouton "maximize"
+
     new_style = current_style & ~WS_MAXIMIZEBOX
 
     ctypes.windll.user32.SetWindowLongW(hwnd, GWL_STYLE, new_style)
